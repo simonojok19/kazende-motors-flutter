@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1067579245520",
+    "firebase_url": "https://kazende-motors-6a59f.firebaseio.com",
+    "project_id": "kazende-motors-6a59f",
+    "storage_bucket": "kazende-motors-6a59f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067579245520:android:c737556f51a4d9ab47efd5",
+        "android_client_info": {
+          "package_name": "ug.kazendemotors.kazendemotors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067579245520-cin421stbmf6f8mld98gmdr98sj62h06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC_7r9B4vCy8iYn1OpwSfdIEK6A-ahP80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067579245520-cin421stbmf6f8mld98gmdr98sj62h06.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
