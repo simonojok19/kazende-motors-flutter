@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:kazendemotors/classes/authentication_api.dart';
@@ -6,38 +5,37 @@ import 'package:kazendemotors/classes/authentication_api.dart';
 class AuthenticationBloc {
   final AuthenticationApi authenticationApi;
 
-  final StreamController<String> _authenticationStreamController = StreamController<String>();
-  Sink<String> get authenticationSink => _authenticationStreamController.sink;
-  Stream<String> get authenticationStream => _authenticationStreamController.stream;
+  final StreamController<String> _authenticationController =
+      StreamController<String>();
+  Sink<String> get addUser => _authenticationController.sink;
+  Stream<String> get user => _authenticationController.stream;
 
-  final StreamController<bool> _logoutStreamController = StreamController<bool>();
-  Sink<bool> get logoutSink => _logoutStreamController.sink;
-  Stream<bool> get logoutStream => _logoutStreamController.stream;
+  final StreamController<bool> _logoutContoller = StreamController<bool>();
+  Sink<bool> get logoutUser => _logoutContoller.sink;
+  Stream<bool> get listLogoutUser => _logoutContoller.stream;
 
-  AuthenticationBloc({ this.authenticationApi }) {
+  AuthenticationBloc(this.authenticationApi) {
     onAuthChanged();
   }
 
-  void dispose() {
-    _authenticationStreamController.close();
-    _logoutStreamController.close();
-  }
-
   void onAuthChanged() {
-    authenticationApi.getFirebaseAuth()
-    .onAuthStateChanged.listen((user) {
+    authenticationApi.getFirebaseAuth().onAuthStateChanged.listen((user) {
       final String uid = user != null ? user.uid : null;
-      authenticationSink.add(uid);
+      addUser.add(uid);
     });
-
-    _logoutStreamController.stream.listen((logout) {
-      if (logout == true ) {
-        _signOut();
+    _logoutContoller.stream.listen((logout) {
+      if (logout == true) {
+        signOut();
       }
     });
   }
 
-  void _signOut() {
+  void dispose() {
+    _authenticationController.close();
+    _logoutContoller.close();
+  }
+
+  void signOut() {
     authenticationApi.signOut();
   }
 }

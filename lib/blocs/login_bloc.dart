@@ -62,7 +62,7 @@ class LoginBloc with LoginValidators {
     });
 
     loginOrCreate.listen((action) {
-      action == 'Login' ? _loginIn() : _createAccount();
+      action == 'Login' ? loginIn() : _createAccount();
     });
   }
 
@@ -82,17 +82,19 @@ class LoginBloc with LoginValidators {
     return _result;
   }
 
-  Future<String> _loginIn() async {
+  Future<String> loginIn() async {
     String _result = '';
     if ( _emailValid == true &&  _passwordValid == true ) {
       await authenticationApi.signInWithEmailAndPassword(email: _email, password: _password).then((user) {
         _result = 'Success';
       }).catchError((error) {
-        _result = error;
+        _result = 'There was error';
+        print(error.toString());
       });
     } else {
       _result = 'Email and Password are not valid';
     }
+    print(_result);
     return _result;
   }
 }
