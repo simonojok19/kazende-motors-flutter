@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kazendemotors/blocs/authentcation_bloc_provider.dart';
 import 'package:kazendemotors/blocs/authentication_bloc.dart';
 import 'package:kazendemotors/classes/authentication.dart';
+import 'package:kazendemotors/pages/contact_page.dart';
 import 'package:kazendemotors/pages/home_page.dart';
 import 'package:kazendemotors/pages/login_page.dart';
 import 'package:kazendemotors/pages/signup_page.dart';
@@ -19,13 +20,23 @@ class _MyAppState extends State<MyApp> {
     final AuthenticationService _authenticationService =
         AuthenticationService();
     final AuthenticationBloc _authenticationBloc =
-        AuthenticationBloc(authenticationApi: _authenticationService);
+        AuthenticationBloc(_authenticationService);
 
     return AuthenticationBlocProvider(
       authenticationBloc: _authenticationBloc,
       child: StreamBuilder(
         initialData: null,
         stream: _authenticationBloc.user,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container(
+              color: Colors.orangeAccent,
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasData) {
+            return _buildMaterialApp(homePage: ContactPage());
+          } else return _buildMaterialApp(homePage: LoginPage());
+        },
       ),
     );
   }
@@ -33,10 +44,10 @@ class _MyAppState extends State<MyApp> {
   MaterialApp _buildMaterialApp({Widget homePage}) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Security Inherited',
+      title: 'Kazende Motors',
       theme: ThemeData(
-          primarySwatch: Colors.orange.shade900,
-          canvasColor: Colors.orange.shade200,
+          primarySwatch: Colors.orange,
+          canvasColor: Colors.orange.shade50,
           bottomAppBarColor: Colors.orange.shade900),
       home: homePage,
     );
