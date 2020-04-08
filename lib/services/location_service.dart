@@ -3,6 +3,13 @@ import 'package:kazendemotors/models/location_model.dart';
 import 'package:kazendemotors/services/location_service_api.dart';
 
 class LocationService extends LocationServiceApi {
+  Firestore _firestore = Firestore.instance;
+  String _collection = 'location';
+
+  LocationService() {
+    _firestore.settings(persistenceEnabled: true);
+  }
+
   @override
   void deleteLocation(Location location) {
     // TODO: implement deleteLocation
@@ -22,14 +29,23 @@ class LocationService extends LocationServiceApi {
 
   @override
   Stream<List<Location>> getLocationList() {
-    // TODO: implement getLocationList
-    return null;
+    return _firestore
+    .collection(_collection)
+    .snapshots()
+    .map((QuerySnapshot snapshot) {
+      List<Location> _location = snapshot
+      .documents.map((doc) => Location.createLocationFromDocument(doc)).toList();
+      return _location;
+    });
   }
 
   @override
-  Future<Location> registerLocation(Location location) {
-    // TODO: implement registerLocation
-    return null;
+  Future<bool> registerLocation(Location location) async {
+    DocumentReference _documentReference = await _firestore
+    .collection(_collection).add(
+      Location.createDocumentFromLocation(location)
+    );
+    return _documentReference.documentID != null;
   }
 
   @override

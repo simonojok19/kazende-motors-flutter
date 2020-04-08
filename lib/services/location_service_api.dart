@@ -5,7 +5,7 @@ abstract class LocationServiceApi {
   Firestore getFirestoreInstance();
   Stream<List<Location>> getLocationList();
   Future<Location> getLocation(String documentID);
-  Future<Location> registerLocation(Location location);
+  Future<bool> registerLocation(Location location);
   void updateLocation(Location location);
   void updateLocationWithTransaction(Location location);
   void deleteLocation(Location location);
