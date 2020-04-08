@@ -21,8 +21,6 @@ class _BodaBodaPageState extends State<BodaBodaPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    print('==========================================');
-    print(BodaBodaBlocProvider.of(context));
     _bodaBodaBloc = BodaBodaBlocProvider.of(context).bodaBodaBloc;
   }
 
@@ -47,8 +45,20 @@ class _BodaBodaPageState extends State<BodaBodaPage> {
         child: SingleChildScrollView(
           padding: EdgeInsets.all(20.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Icon(
+                Icons.person,
+                size: 100.0,
+              ),
+              Text(
+                'Registration Form',
+                style: TextStyle(
+                  fontSize: 25.0,
+                  fontStyle: FontStyle.normal
+                ),
+              ),
               // first Name
               _createTextField(
                   stream: _bodaBodaBloc.firstName,
