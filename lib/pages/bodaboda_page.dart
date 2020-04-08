@@ -49,24 +49,27 @@ class _BodaBodaPageState extends State<BodaBodaPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              // first Name
 
-              // first Name 
-              StreamBuilder(
-                stream: _bodaBodaBloc.firstName,
-                builder: (BuildContext context, AsyncSnapshot snapshot) => TextField(
-                  textCapitalization: TextCapitalization.words,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    labelText: 'First Name',
-                    icon: Icon(Icons.person),
-                    errorText: snapshot.error
-                  ),
-                  onChanged: _bodaBodaBloc.firstNameChanged.add,
-                ),
-              ),
+              // lastName
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _createTextField() {
+    return StreamBuilder(
+      stream: _bodaBodaBloc.firstName,
+      builder: (BuildContext context, AsyncSnapshot snapshot) => TextField(
+        textCapitalization: TextCapitalization.words,
+        keyboardType: TextInputType.text,
+        decoration: InputDecoration(
+            labelText: 'First Name',
+            icon: Icon(Icons.person),
+            errorText: snapshot.error),
+        onChanged: _bodaBodaBloc.firstNameChanged.add,
       ),
     );
   }

@@ -13,12 +13,17 @@ class BodaBodaBloc {
   Sink<String> get firstNameChanged => _firstNameController.sink;
   Stream<String> get firstName => _firstNameController.stream;
 
+  StreamController<String> _lastNameController = StreamController<String>.broadcast();
+  Sink<String> get lastNameChanged => _lastNameController.sink;
+  Stream<String> get lastName => _lastNameController.stream;
+
   BodaBodaBloc({this.register, this.bodaBoda, this.bodaBodaAPI}) {
     _startEditListenter().then((finished) => _getJournal(register, bodaBoda));
   }
 
   void dispose() {
     _firstNameController.close();
+    _lastNameController.close();
   }
 
   Future<bool> _startEditListenter() async {
@@ -26,6 +31,11 @@ class BodaBodaBloc {
       bodaBoda.firstName = firstName;
       print(firstName);
     });
+
+    _lastNameController.stream.listen((lastName) {
+      bodaBoda.lastName = lastName;
+    });
+
     return true;
   }
 
@@ -33,6 +43,7 @@ class BodaBodaBloc {
     if (register) {
       bodaBoda = BodaBoda();
       bodaBoda.firstName = '';
+      bodaBoda.lastName = '';
     } else {
       bodaBoda.firstName = bodaboda.firstName;
     }
