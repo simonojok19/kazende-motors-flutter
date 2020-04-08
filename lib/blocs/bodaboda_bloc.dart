@@ -42,7 +42,7 @@ class BodaBodaBloc {
     BodaBoda bodaboda = BodaBoda(
         documentID: bodaBoda.documentID, firstName: bodaBoda.firstName);
     register
-        ? bodaBodaAPI.registerBodaBoda(bodaBoda)
-        : bodaBodaAPI.updateBodaBoda(bodaBoda);
+        ? bodaBodaAPI.registerBodaBoda(bodaboda)
+        : bodaBodaAPI.updateBodaBoda(bodaboda);
   }
 }
