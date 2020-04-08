@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kazendemotors/blocs/authentcation_bloc_provider.dart';
 import 'package:kazendemotors/blocs/authentication_bloc.dart';
 import 'package:kazendemotors/classes/authentication.dart';
-import 'package:kazendemotors/pages/bodaboda_registration_page.dart';
+import 'package:kazendemotors/pages/bodaboda_page.dart';
 import 'package:kazendemotors/pages/contact_page.dart';
 import 'package:kazendemotors/pages/home_page.dart';
 import 'package:kazendemotors/pages/login_page.dart';
