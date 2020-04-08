@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kazendemotors/blocs/authentcation_bloc_provider.dart';
 import 'package:kazendemotors/blocs/authentication_bloc.dart';
 import 'package:kazendemotors/classes/authentication.dart';
+import 'package:kazendemotors/pages/bodaboda_registration_page.dart';
 import 'package:kazendemotors/pages/contact_page.dart';
 import 'package:kazendemotors/pages/home_page.dart';
 import 'package:kazendemotors/pages/login_page.dart';
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData) {
-            return _buildMaterialApp(homePage: ContactPage());
+            return _buildMaterialApp(homePage: BodaBodaRegistrationPage());
           } else return _buildMaterialApp(homePage: LoginPage());
         },
       ),
@@ -46,8 +47,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Kazende Motors',
       theme: ThemeData(
-          primarySwatch: Colors.orange,
-          canvasColor: Colors.orange.shade50,
+          primarySwatch: Colors.indigo,
+          canvasColor: Colors.lightBlue.shade200,
           bottomAppBarColor: Colors.orange.shade900),
       home: homePage,
     );
