@@ -41,6 +41,16 @@ class _BodaBodaRegistrationPageState extends State<BodaBodaRegistrationPage> {
       appBar: AppBar(
         title: Text('BodaBoda Registration'),
       ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
