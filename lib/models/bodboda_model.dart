@@ -12,36 +12,33 @@ class BodaBoda {
   String locationID;
   String motorcycleID;
 
-  BodaBoda({
-    this.documentID,
-    this.firstName,
-    this.lastName,
-    this.middleName,
-    this.dateOfBirth,
-    this.permitNumber,
-    this.created,
-    this.updated,
-    this.userId,
-    this.stageID,
-    this.locationID,
-    this.motorcycleID
-  });
-
-  factory BodaBoda.createBodaBodaFromDocument(dynamic doc) =>
   BodaBoda(
-    documentID: doc.documentID,
-    firstName: doc['firstName'],
-    lastName: doc['lastName'],
-    middleName: doc['middleName'],
-    dateOfBirth: doc['dateOfBirth'],
-    permitNumber: doc['permitNumber'],
-    created: doc['created'],
-    updated: doc['updated'],
-    userId: doc['userID'],
-    stageID: doc['stageID'],
-    locationID: doc['locationID'],
-    motorcycleID: doc['motorcycleID']
-  );
+      {this.documentID,
+      this.firstName,
+      this.lastName,
+      this.middleName,
+      this.dateOfBirth,
+      this.permitNumber,
+      this.created,
+      this.updated,
+      this.userId,
+      this.stageID,
+      this.locationID,
+      this.motorcycleID});
+
+  factory BodaBoda.createBodaBodaFromDocument(dynamic doc) => BodaBoda(
+      documentID: doc.documentID,
+      firstName: doc['firstName'],
+      lastName: doc['lastName'],
+      middleName: doc['middleName'],
+      dateOfBirth: doc['dateOfBirth'],
+      permitNumber: doc['permitNumber'],
+      created: doc['created'],
+      updated: doc['updated'],
+      userId: doc['userID'],
+      stageID: doc['stageID'],
+      locationID: doc['locationID'],
+      motorcycleID: doc['motorcycleID']);
 
   static createDocumentFromBodaBoda(BodaBoda bodaBoda) {
     return {
@@ -57,5 +54,24 @@ class BodaBoda {
       'locationID': bodaBoda.locationID,
       'motorcycleID': bodaBoda.motorcycleID
     };
+  }
+
+  String toString() {
+    return '''
+      { 
+        'documentID': $documentID,
+        'firstName': $firstName,
+        'lastName': $lastName,
+        'middleName': $middleName,
+        'dateOfBirth': $dateOfBirth,
+        'permitNumber: $permitNumber,
+        'created': $created,
+        'update': $updated,
+        'userID': $userId,
+        'stageID': $stageID,
+        'locationID': $locationID,
+        'motorcycleID': $motorcycleID
+      }
+    ''';
   }
 }

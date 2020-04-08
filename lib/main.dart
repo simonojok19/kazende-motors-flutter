@@ -45,6 +45,7 @@ class _MyAppState extends State<MyApp> {
                 bodaBodaAPI: BodaBodaService(),
                 bodaBoda: BodaBoda(),
                 register: false,
+                authenticationApi: _authenticationService
               ),
             ));
           } else return _buildMaterialApp(homePage: LoginPage());
