@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:kazendemotors/blocs/bodaboda_bloc.dart';
 import 'package:kazendemotors/blocs/bodaboda_bloc_provider.dart';
 
-class BodaBodaRegistrationPage extends StatefulWidget {
+class BodaBodaPage extends StatefulWidget {
   @override
-  _BodaBodaRegistrationPageState createState() => _BodaBodaRegistrationPageState();
+  _BodaBodaPageState createState() => _BodaBodaPageState();
 }
 
-class _BodaBodaRegistrationPageState extends State<BodaBodaRegistrationPage> {
+class _BodaBodaPageState extends State<BodaBodaPage> {
   BodaBodaBloc _bodaBodaBloc;
   TextEditingController _firstNameController;
 
@@ -21,6 +21,8 @@ class _BodaBodaRegistrationPageState extends State<BodaBodaRegistrationPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    print('==========================================');
+    print(BodaBodaBlocProvider.of(context));
     _bodaBodaBloc = BodaBodaBlocProvider.of(context).bodaBodaBloc;
   }
 
@@ -43,10 +45,25 @@ class _BodaBodaRegistrationPageState extends State<BodaBodaRegistrationPage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: EdgeInsets.all(20.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              
+
+              // first Name 
+              StreamBuilder(
+                stream: _bodaBodaBloc.firstName,
+                builder: (BuildContext context, AsyncSnapshot snapshot) => TextField(
+                  textCapitalization: TextCapitalization.words,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: 'First Name',
+                    icon: Icon(Icons.person),
+                    errorText: snapshot.error
+                  ),
+                  onChanged: _bodaBodaBloc.firstNameChanged.add,
+                ),
+              ),
             ],
           ),
         ),

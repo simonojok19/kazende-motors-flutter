@@ -24,6 +24,7 @@ class BodaBodaBloc {
   Future<bool> _startEditListenter() async {
     _firstNameController.stream.listen((firstName) {
       bodaBoda.firstName = firstName;
+      print(firstName);
     });
     return true;
   }
