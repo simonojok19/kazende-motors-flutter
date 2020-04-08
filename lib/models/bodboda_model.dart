@@ -42,4 +42,20 @@ class BodaBoda {
     locationID: doc['locationID'],
     motorcycleID: doc['motorcycleID']
   );
+
+  static createDocumentFromBodaBoda(BodaBoda bodaBoda) {
+    return {
+      'firstName': bodaBoda.firstName,
+      'lastName': bodaBoda.lastName,
+      'middleName': bodaBoda.middleName,
+      'dateOfBirth': bodaBoda.dateOfBirth,
+      'permitNumber': bodaBoda.permitNumber,
+      'created': bodaBoda.created,
+      'updated': bodaBoda.updated,
+      'userID': bodaBoda.userId,
+      'stageID': bodaBoda.stageID,
+      'locationID': bodaBoda.locationID,
+      'motorcycleID': bodaBoda.motorcycleID
+    };
+  }
 }
