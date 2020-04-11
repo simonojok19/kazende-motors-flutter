@@ -35,37 +35,15 @@ class _BodaBodaListPageState extends State<BodaBodaListPage> {
       appBar: AppBar(
         title: Text('Boda Bodas'),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            children: <Widget>[
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-              _buildBodaBodaCard(),
-            ],
-          ),
-        ),
+      body: StreamBuilder(
+        stream: _bodaBodaListBloc.listBodaBoda,
+        builder: (BuildContext context, AsyncSnapshot snapshop) {
+          if (snapshop.connectionState == ConnectionState.waiting ) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }
