@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kazendemotors/blocs/authentcation_bloc_provider.dart';
+import 'package:kazendemotors/blocs/authentication_bloc.dart';
+import 'package:kazendemotors/blocs/bodaboda_list/bodaboda_list_bloc.dart';
+import 'package:kazendemotors/blocs/bodaboda_list/bodaboda_list_bloc_provider.dart';
 
 class BodaBodaListPage extends StatefulWidget {
   @override
@@ -6,6 +10,25 @@ class BodaBodaListPage extends StatefulWidget {
 }
 
 class _BodaBodaListPageState extends State<BodaBodaListPage> {
+  AuthenticationBloc _authenticationBloc;
+  BodaBodaListBloc _bodaBodaListBloc;
+  String _uid;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _authenticationBloc = AuthenticationBlocProvider.of(context).authenticationBloc;
+    _bodaBodaListBloc = BodaBodaListBlocProvider.of(context).bodaBodaListBloc;
+  }
+
+  @override
+  void dispose() {
+    _authenticationBloc.dispose();
+    _bodaBodaListBloc.dispose();
+     super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
