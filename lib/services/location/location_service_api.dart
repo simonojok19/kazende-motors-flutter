@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:kazendemotors/models/location_model.dart';
+import 'package:kazendemotors/models/location/location_model.dart';
 
 abstract class LocationServiceApi {
   Firestore getFirestoreInstance();
