@@ -13,6 +13,5 @@ class LocationBlocProvider extends InheritedWidget {
   }
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => false;
-  }
   
 }
