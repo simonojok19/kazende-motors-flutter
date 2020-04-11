@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kazendemotors/models/location_model.dart';
 
 class LocationDialog {
-  static Future<Location> chooseLocation(BuildContext context) async {
+  static Future<Location> registerLocation(BuildContext context) async {
     return await showDialog(
       context: context,
       barrierDismissible: false,
@@ -10,23 +10,56 @@ class LocationDialog {
         return AlertDialog(
           title: Text('Register Location'),
           content: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('Content'),
+              TextField(
+                keyboardType: TextInputType.text,
+                style: TextStyle(
+                  color: Colors.grey.shade900,
+                  fontSize: 16.0
+                ),
+                decoration: InputDecoration(
+                  labelText: 'District',
+                  labelStyle: TextStyle(color: Colors.purple),
+                  border: OutlineInputBorder()
+                ),
+              ),
+              TextField(
+                keyboardType: TextInputType.text,
+                style: TextStyle(
+                  color: Colors.grey.shade900,
+                  fontSize: 16.0
+                ),
+                decoration: InputDecoration(
+                  labelText: 'SubCounty',
+                  labelStyle: TextStyle(color: Colors.purple),
+                  border: OutlineInputBorder()
+                ),
+              ),
+              TextField(
+                keyboardType: TextInputType.text,
+                style: TextStyle(
+                  color: Colors.grey.shade900,
+                  fontSize: 16.0
+                ),
+                decoration: InputDecoration(
+                  labelText: 'Village',
+                  labelStyle: TextStyle(color: Colors.purple),
+                  border: OutlineInputBorder()
+                ),
+              ),
             ],
           ),
           actions: <Widget>[
             FlatButton(
               child: Text('CANCEL'),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pop(context, Location(district: 'Gulu'));
               },
             ),
             FlatButton(
               child: Text('Register', style: TextStyle(color: Colors.green),),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pop(context, Location(district: 'Gulu'));
               },
             ),
           ],

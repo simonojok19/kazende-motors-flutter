@@ -40,6 +40,7 @@ class LoginBloc with LoginValidators {
     _enableLoginCreateButtonController.close();
     _enableLoginCreateButtonController.close();
     _loginOrCreateController.close();
+    _loginOrCreateButtonController.close();
   }
 
   void _startListenersIfEmailPasswordAreValid() {

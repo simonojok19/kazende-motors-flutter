@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kazendemotors/blocs/bodaboda_bloc.dart';
 import 'package:kazendemotors/blocs/bodaboda_bloc_provider.dart';
+import 'package:kazendemotors/dialog/location_dailogs.dart';
+import 'package:kazendemotors/models/location_model.dart';
 
 class BodaBodaPage extends StatefulWidget {
   @override
@@ -31,15 +33,22 @@ class _BodaBodaPageState extends State<BodaBodaPage> {
     super.dispose();
   }
 
-  void _addOrEditBodaBoda() {
-    Navigator.pop(context);
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('BodaBoda Registration'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () async {
+              Location location =
+                  await LocationDialog.registerLocation(context);
+              print(location.toString());
+            },
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -54,10 +63,7 @@ class _BodaBodaPageState extends State<BodaBodaPage> {
               ),
               Text(
                 'Registration Form',
-                style: TextStyle(
-                  fontSize: 25.0,
-                  fontStyle: FontStyle.normal
-                ),
+                style: TextStyle(fontSize: 25.0, fontStyle: FontStyle.normal),
               ),
               // first Name
               _createTextField(
@@ -67,62 +73,70 @@ class _BodaBodaPageState extends State<BodaBodaPage> {
                   sink: _bodaBodaBloc.firstNameChanged),
               // middleName
               _createTextField(
-                stream: _bodaBodaBloc.middleName,
-                labelText: 'Middle Name',
-                icon: Icon(Icons.person),
-                sink: _bodaBodaBloc.middleNameChanged
-              ),
+                  stream: _bodaBodaBloc.middleName,
+                  labelText: 'Middle Name',
+                  icon: Icon(Icons.person),
+                  sink: _bodaBodaBloc.middleNameChanged),
               // lastName
               _createTextField(
-                stream: _bodaBodaBloc.lastName,
-                labelText: 'Last Name',
-                icon: Icon(Icons.person),
-                sink: _bodaBodaBloc.lastNameChanged
+                  stream: _bodaBodaBloc.lastName,
+                  labelText: 'Last Name',
+                  icon: Icon(Icons.person),
+                  sink: _bodaBodaBloc.lastNameChanged),
+
+              _createTextField(
+                  stream: _bodaBodaBloc.dateOfBirth,
+                  labelText: 'Date of Birth',
+                  icon: Icon(Icons.calendar_today),
+                  sink: _bodaBodaBloc.dateOfBirthChanged),
+
+              _createTextField(
+                  stream: _bodaBodaBloc.permitNumber,
+                  labelText: 'Permit Number',
+                  icon: Icon(Icons.motorcycle),
+                  sink: _bodaBodaBloc.permitNumberChanged),
+
+              Row(
+                children: <Widget>[
+                  _createTextField(
+                    stream: _bodaBodaBloc.stageID,
+                    labelText: 'Stage',
+                    icon: Icon(Icons.local_parking),
+                    sink: _bodaBodaBloc.stageIDChanged,
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.place),
+                    onPressed: () { },
+                  ),
+                ],
               ),
 
               _createTextField(
-                stream: _bodaBodaBloc.dateOfBirth,
-                labelText: 'Date of Birth',
-                icon: Icon(Icons.calendar_today),
-                sink: _bodaBodaBloc.dateOfBirthChanged
-              ),
+                  stream: _bodaBodaBloc.locationID,
+                  labelText: 'Location',
+                  icon: Icon(Icons.my_location),
+                  sink: _bodaBodaBloc.locationIDChanged),
 
               _createTextField(
-                stream: _bodaBodaBloc.permitNumber,
-                labelText: 'Permit Number',
-                icon: Icon(Icons.motorcycle),
-                sink: _bodaBodaBloc.permitNumberChanged
+                  stream: _bodaBodaBloc.motorcycleID,
+                  labelText: 'Motorcycle',
+                  icon: Icon(Icons.motorcycle),
+                  sink: _bodaBodaBloc.motorcycleIDChanged),
+              SizedBox(
+                height: 20.0,
               ),
-
-              _createTextField(
-                stream: _bodaBodaBloc.stageID,
-                labelText: 'Stage',
-                icon: Icon(Icons.local_parking),
-                sink: _bodaBodaBloc.stageIDChanged,
-              ),
-
-              _createTextField(
-                stream: _bodaBodaBloc.locationID,
-                labelText: 'Location',
-                icon: Icon(Icons.my_location),
-                sink: _bodaBodaBloc.locationIDChanged
-              ),
-
-              _createTextField(
-                stream: _bodaBodaBloc.motorcycleID,
-                labelText: 'Motorcycle',
-                icon: Icon(Icons.motorcycle),
-                sink: _bodaBodaBloc.motorcycleIDChanged
-              ),
-              SizedBox(height: 20.0,),
               OutlineButton(
-                onPressed: () { _bodaBodaBloc.saveBodaBoda(); },
+                onPressed: () {
+                  _bodaBodaBloc.saveBodaBoda();
+                },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Icon(Icons.save),
-                    SizedBox(width: 10.0,),
+                    SizedBox(
+                      width: 10.0,
+                    ),
                     Text(
                       'Save',
                       style: TextStyle(fontSize: 20.0),
