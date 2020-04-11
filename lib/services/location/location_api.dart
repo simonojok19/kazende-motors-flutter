@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kazendemotors/models/location/location_model.dart';
 
-abstract class LocationServiceApi {
+abstract class LocationApi {
   Firestore getFirestoreInstance();
   Stream<List<Location>> getLocationList();
   Future<Location> getLocation(String documentID);
