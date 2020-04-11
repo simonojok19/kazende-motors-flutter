@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kazendemotors/blocs/authentcation_bloc_provider.dart';
 import 'package:kazendemotors/blocs/authentication_bloc.dart';
-import 'package:kazendemotors/blocs/bodaboda_bloc.dart';
-import 'package:kazendemotors/blocs/bodaboda_bloc_provider.dart';
 import 'package:kazendemotors/classes/authentication.dart';
-import 'package:kazendemotors/models/bodboda_model.dart';
-import 'package:kazendemotors/pages/bodaboda_page.dart';
+import 'package:kazendemotors/pages/home_page.dart';
 import 'package:kazendemotors/pages/login_page.dart';
-import 'package:kazendemotors/services/bodaboda_service.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,15 +32,7 @@ class _MyAppState extends State<MyApp> {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData) {
-            return _buildMaterialApp(homePage: BodaBodaBlocProvider(
-              child: BodaBodaPage(),
-              bodaBodaBloc: BodaBodaBloc(
-                bodaBodaAPI: BodaBodaService(),
-                bodaBoda: BodaBoda(),
-                register: false,
-                authenticationApi: _authenticationService
-              ),
-            ));
+            return _buildMaterialApp(homePage: HomePage());
           } else return _buildMaterialApp(homePage: LoginPage());
         },
       ),
