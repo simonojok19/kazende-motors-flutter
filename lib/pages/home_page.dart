@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kazendemotors/blocs/bodaboda_list/bodaboda_list_bloc.dart';
+import 'package:kazendemotors/blocs/bodaboda_list/bodaboda_list_bloc_provider.dart';
+import 'package:kazendemotors/classes/authentication.dart';
 import 'package:kazendemotors/pages/bodaboda_list_page.dart';
+import 'package:kazendemotors/services/bodaboda/bodaboda_service.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -31,16 +35,21 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'BodaBodas',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16.0
-                    ),
+                    style: TextStyle(fontSize: 16.0),
                   ),
                 ],
               ),
-              onTap: () { 
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (BuildContext context) => BodaBodaListPage()
-                ));
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            BodaBodaListBlocProvider(
+                              bodaBodaListBloc: BodaBodaListBloc(
+                                  authenticationApi: AuthenticationService(),
+                                  bodaAPI: BodaBodaService()),
+                              child: BodaBodaListPage(),
+                            )));
               },
             ),
           ),
@@ -59,15 +68,14 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'Locations',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16.0
-                    ),
+                    style: TextStyle(fontSize: 16.0),
                   ),
                 ],
               ),
-              onTap: () { },
+              onTap: () {},
             ),
-          ),Card(
+          ),
+          Card(
             margin: EdgeInsets.all(8.0),
             child: InkWell(
               child: Column(
@@ -82,13 +90,11 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'Stage',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16.0
-                    ),
+                    style: TextStyle(fontSize: 16.0),
                   ),
                 ],
               ),
-              onTap: () { },
+              onTap: () {},
             ),
           ),
           Card(
@@ -106,13 +112,11 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'BodaBodas',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16.0
-                    ),
+                    style: TextStyle(fontSize: 16.0),
                   ),
                 ],
               ),
-              onTap: () { },
+              onTap: () {},
             ),
           ),
           Card(
@@ -130,13 +134,11 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'BodaBodas',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16.0
-                    ),
+                    style: TextStyle(fontSize: 16.0),
                   ),
                 ],
               ),
-              onTap: () { },
+              onTap: () {},
             ),
           ),
           Card(
@@ -154,13 +156,11 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'BodaBodas',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16.0
-                    ),
+                    style: TextStyle(fontSize: 16.0),
                   ),
                 ],
               ),
-              onTap: () { },
+              onTap: () {},
             ),
           ),
         ],

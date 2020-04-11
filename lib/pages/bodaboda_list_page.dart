@@ -12,22 +12,20 @@ class BodaBodaListPage extends StatefulWidget {
 class _BodaBodaListPageState extends State<BodaBodaListPage> {
   AuthenticationBloc _authenticationBloc;
   BodaBodaListBloc _bodaBodaListBloc;
-  String _uid;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _authenticationBloc = AuthenticationBlocProvider.of(context).authenticationBloc;
+    // _authenticationBloc = AuthenticationBlocProvider.of(context).authenticationBloc;
     _bodaBodaListBloc = BodaBodaListBlocProvider.of(context).bodaBodaListBloc;
   }
 
   @override
   void dispose() {
-    _authenticationBloc.dispose();
+    // _authenticationBloc.dispose();
     _bodaBodaListBloc.dispose();
-     super.dispose();
+    super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,37 +36,28 @@ class _BodaBodaListPageState extends State<BodaBodaListPage> {
       body: StreamBuilder(
         stream: _bodaBodaListBloc.listBodaBoda,
         builder: (BuildContext context, AsyncSnapshot snapshop) {
-          if (snapshop.connectionState == ConnectionState.waiting ) {
+          if (snapshop.connectionState == ConnectionState.waiting) {
             return Center(
               child: CircularProgressIndicator(),
             );
-          }
+          } else if (snapshop.hasData) {
+            return buildListWithCards(snapshop);
+          } else
+            return Center(
+              child: Container(
+                child: Text('Please Add Boda Boda Riders'),
+              ),
+            );
         },
       ),
-    );
-  }
-
-  Widget _buildBodaBodaCards() {
-    return Card(
-      child: Column(
-        children: <Widget>[
-          CircleAvatar(
-            backgroundImage: AssetImage('assets/images/image_simon.jpg'),
-            radius: 50.0,
-          ),
-          Text(
-            'Simon Peter Ojok',
-            style: TextStyle(
-              fontSize: 25.0,
-              color: Colors.blue,
-            ),
-          ),
-        ],
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
       ),
     );
   }
 
-  Widget _buildBodaBodaCard() {
+  Widget _buildBodaBodaCard(AsyncSnapshot snapshop) {
     return Card(
       margin: EdgeInsets.all(4.0),
       child: InkWell(
@@ -100,8 +89,49 @@ class _BodaBodaListPageState extends State<BodaBodaListPage> {
             ],
           ),
         ),
-        onTap: () { },
+        onTap: () {},
       ),
+    );
+  }
+
+  Widget buildListWithCards(AsyncSnapshot snapshot) {
+    return ListView.separated(
+      itemCount: snapshot.data.length,
+      itemBuilder: (BuildContext context, int index) => Card(
+        margin: EdgeInsets.all(4.0),
+        child: InkWell(
+          child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundImage:
+                          AssetImage('assets/images/image_simon.jpg'),
+                      radius: 50.0,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          snapshot.data[index].firstName,
+                          style: TextStyle(fontSize: 24.0),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          onTap: () {},
+        ),
+      ),
+      separatorBuilder: (BuildContext context, int index) => Container(),
     );
   }
 }
