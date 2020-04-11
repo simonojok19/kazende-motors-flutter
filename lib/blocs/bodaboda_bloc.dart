@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:kazendemotors/classes/authentication_api.dart';
 import 'package:kazendemotors/models/bodboda_model.dart';
-import 'package:kazendemotors/services/bodaboda_api.dart';
+import 'package:kazendemotors/services/bodaboda/bodaboda_api.dart';
+
 
 class BodaBodaBloc {
   final BodaBodaAPI bodaBodaAPI;

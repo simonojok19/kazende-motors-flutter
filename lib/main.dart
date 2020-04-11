@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kazendemotors/blocs/authentcation_bloc_provider.dart';
 import 'package:kazendemotors/blocs/authentication_bloc.dart';
 import 'package:kazendemotors/classes/authentication.dart';
+import 'package:kazendemotors/pages/bodaboda_list_page.dart';
 import 'package:kazendemotors/pages/home_page.dart';
 import 'package:kazendemotors/pages/login_page.dart';
 
@@ -32,7 +33,7 @@ class _MyAppState extends State<MyApp> {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData) {
-            return _buildMaterialApp(homePage: HomePage());
+            return _buildMaterialApp(homePage: BodaBodaListPage());
           } else return _buildMaterialApp(homePage: LoginPage());
         },
       ),

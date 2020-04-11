@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kazendemotors/models/bodboda_model.dart';
-import 'package:kazendemotors/services/bodaboda_api.dart';
+import 'package:kazendemotors/services/bodaboda/bodaboda_api.dart';
 
 class BodaBodaService implements BodaBodaAPI {
   Firestore _firestore = Firestore.instance;
