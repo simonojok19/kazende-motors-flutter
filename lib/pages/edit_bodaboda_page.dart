@@ -4,12 +4,12 @@ import 'package:kazendemotors/blocs/bodaboda_bloc_provider.dart';
 import 'package:kazendemotors/dialog/location_dailogs.dart';
 import 'package:kazendemotors/models/location/location_model.dart';
 
-class BodaBodaPage extends StatefulWidget {
+class EditBodaBodaPage extends StatefulWidget {
   @override
-  _BodaBodaPageState createState() => _BodaBodaPageState();
+  _EditBodaBodaPageState createState() => _EditBodaBodaPageState();
 }
 
-class _BodaBodaPageState extends State<BodaBodaPage> {
+class _EditBodaBodaPageState extends State<EditBodaBodaPage> {
   BodaBodaBloc _bodaBodaBloc;
   TextEditingController _firstNameController;
 
