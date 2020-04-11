@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kazendemotors/models/location_model.dart';
+import 'package:kazendemotors/models/location/location_model.dart';
 
 class LocationDialog {
   static Future<Location> registerLocation(BuildContext context) async {
