@@ -33,4 +33,19 @@ class LoanTypeBloc {
   StreamController<String>.broadcast();
   Sink<String> get descriptionChanged => _descriptionStreamController.sink;
   Stream<String> get description => _descriptionStreamController.stream;
+
+  LoanTypeBloc({ this.add, this.loanType, this.authenticationApi, this.loanTypeApi}) {
+    authenticationApi.currentUserUid().then((userID) {
+      loanType.userID = userID;
+      _startListener().then((started) {
+        _getLoanType(add, loanType);
+      });
+    }).catchError((error) {
+      print('There was error in getting current user: $error');
+    })
+  }
+
+  _startListener() {}
+
+  void _getLoanType(bool add, LoanType loanType) {}
 }
