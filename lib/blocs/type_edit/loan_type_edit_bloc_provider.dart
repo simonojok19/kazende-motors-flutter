@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:kazendemotors/blocs/type_edit/loan_type_edit_bloc.dart';
 import 'package:kazendemotors/classes/authentication_api.dart';
 import 'package:kazendemotors/services/loan_type/loan_type_api.dart';
 
 class LoanTypeEditBlocProvider extends InheritedWidget {
-  final AuthenticationApi authenticationApi;
-  final LoanTypeApi loanTypeApi;
+  final LoanTypeEditBloc loanTypeEditBloc;
 
-  const LoanTypeEditBlocProvider({ Key key, Widget child, this.authenticationApi, this.loanTypeApi}): super(key: key, child: child);
+  const LoanTypeEditBlocProvider({ Key key, Widget child, this.loanTypeEditBloc}): super(key: key, child: child);
 
   static LoanTypeEditBlocProvider of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<LoanTypeEditBlocProvider>();

@@ -14,13 +14,6 @@ class _EditBodaBodaPageState extends State<EditBodaBodaPage> {
   TextEditingController _firstNameController;
 
   @override
-  void initState() {
-    super.initState();
-    _firstNameController = TextEditingController();
-    _firstNameController.text = '';
-  }
-
-  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _bodaBodaBloc = BodaBodaBlocProvider.of(context).bodaBodaBloc;
