@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kazendemotors/blocs/bodaboda_bloc.dart';
-import 'package:kazendemotors/blocs/bodaboda_bloc_provider.dart';
+import 'package:kazendemotors/blocs/edit_bodaboda/bodaboda_bloc.dart';
+import 'package:kazendemotors/blocs/edit_bodaboda/bodaboda_bloc_provider.dart';
 import 'package:kazendemotors/dialog/location_dailogs.dart';
 import 'package:kazendemotors/models/location/location_model.dart';
 
