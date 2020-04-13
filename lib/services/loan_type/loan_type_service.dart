@@ -3,16 +3,16 @@ import 'package:kazendemotors/models/type/loan_type_model.dart';
 import 'package:kazendemotors/services/loan_type/loan_type_api.dart';
 
 class LoanTypeService extends LoanTypeApi {
+  String _collection = 'loanTypes';
   @override
-  Future<bool> addLoanType(LoanType loanType) {
-    // TODO: implement addLoanType
-    return null;
+  Future<bool> addLoanType(LoanType loanType) async {
+    DocumentReference _docRef = await getInstance().collection(_collection).add(LoanType.createDocumentFromLoanType(loanType));
+    return _docRef.documentID != null;
   }
 
   @override
   Firestore getInstance() {
-    // TODO: implement getInstance
-    return null;
+    return Firestore.instance;
   }
 
   @override
@@ -23,8 +23,10 @@ class LoanTypeService extends LoanTypeApi {
 
   @override
   Stream<List<LoanType>> getLoanTypeList() {
-    // TODO: implement getLoanTypeList
-    return null;
+    return getInstance().collection(_collection).snapshots().map((QuerySnapshot snapshot) {
+      List<LoanType> list = snapshot.documents.map((doc) => LoanType.createLoanTypeFromDoc(doc)).toList();
+      return list;
+    });
   }
 
 }
