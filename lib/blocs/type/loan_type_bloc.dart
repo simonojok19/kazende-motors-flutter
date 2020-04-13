@@ -42,10 +42,59 @@ class LoanTypeBloc {
       });
     }).catchError((error) {
       print('There was error in getting current user: $error');
-    })
+    });
   }
 
-  _startListener() {}
+  void dispose() {
+    _descriptionStreamController.close();
+    _itemStreamController.close();
+    _nameStreamController.close();
+    _paymentStreamController.close();
+    _quantityStreamController.close();
+  }
 
-  void _getLoanType(bool add, LoanType loanType) {}
+  Future<bool> _startListener() async {
+    _descriptionStreamController.stream.listen((description) {
+      loanType.description = description;
+    });
+
+    _itemStreamController.stream.listen((item) {
+      loanType.item = item;
+    });
+
+    _nameStreamController.stream.listen((name) {
+      loanType.name = name;
+    });
+
+    _quantityStreamController.stream.listen((quantity) {
+      loanType.quantity = quantity;
+    });
+
+    return true;
+  }
+
+  void _getLoanType(bool add, LoanType lt) {
+    if (add) {
+      loanType.quantity = '';
+      loanType.name = '';
+      loanType.description = '';
+      loanType.updated = '';
+      loanType.item = '';
+      loanType.created = '';
+      loanType.paymentPeriod = '';
+    } else {
+      loanType.quantity = lt.quantity;
+      loanType.name = lt.name;
+      loanType.description = lt.description;
+      loanType.updated = lt.updated;
+      loanType.item = lt.item;
+      loanType.created = lt.created;
+      loanType.paymentPeriod = lt.paymentPeriod;
+    }
+  }
+
+  void saveLoanType() {
+    loanTypeApi.addLoanType(loanType);
+    print(loanType.toString());
+  }
 }
