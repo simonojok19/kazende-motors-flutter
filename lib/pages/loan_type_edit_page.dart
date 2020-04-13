@@ -19,7 +19,52 @@ class _LoanTypeEditPageState extends State<LoanTypeEditPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: Text('Edit Loan Type'),),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            children: <Widget>[
+              _createTextField(
+                labelText: 'Name',
+                stream: _loanTypeEditBloc.name,
+                sink: _loanTypeEditBloc.nameChanged,
+                icon: Icon(Icons.edit)
+              ),
+              _createTextField(
+                labelText: 'Payment Period',
+                stream: _loanTypeEditBloc.payment,
+                sink: _loanTypeEditBloc.paymentChanged,
+                icon: Icon(Icons.attach_money)
+              ),
+              _createTextField(
+                labelText: 'Item',
+                stream: _loanTypeEditBloc.item,
+                sink: _loanTypeEditBloc.itemChanged,
+                icon: Icon(Icons.motorcycle)
+              ),
+              _createTextField(
+                labelText: 'Quantity',
+                stream: _loanTypeEditBloc.quantity,
+                sink: _loanTypeEditBloc.quantityChanged,
+                icon: Icon(Icons.account_balance)
+              ),
+              _createTextField(
+                labelText: 'Description',
+                stream: _loanTypeEditBloc.description,
+                sink: _loanTypeEditBloc.descriptionChanged,
+                icon: Icon(Icons.edit)
+              ),
+              RaisedButton(
+                child: Text('Save Changes'),
+                onPressed: _loanTypeEditBloc.saveLoanType,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _createTextField(
