@@ -166,12 +166,8 @@ class _HomePageState extends State<HomePage> {
               ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(
-                  builder: (BuildContext context) => LoanTypeBlocProvider(
-                    authenticationApi: AuthenticationService(),
-                    child: LoanTypeListPage(),
-                    loanTypeApi: LoanTypeService(),
-                  )
-                ));
+                  builder: (BuildContext context) => LoanTypeListPage()
+                )
               },
             ),
           ),
