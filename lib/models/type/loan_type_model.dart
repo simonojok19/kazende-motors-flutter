@@ -43,4 +43,10 @@ class LoanType {
       'userID': loanType.userID
     };
   }
+
+  @override
+  String toString() {
+    return 'LoanType{documentID: $documentID, name: $name, paymentPeriod: $paymentPeriod, item: $item, quantity: $quantity, description: $description, created: $created, updated: $updated, userID: $userID}';
+  }
+
 }
