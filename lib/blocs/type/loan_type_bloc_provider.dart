@@ -8,7 +8,7 @@ class LoanTypeBlocProvider extends InheritedWidget {
 
   const LoanTypeBlocProvider({ Key key, Widget child, this.authenticationApi, this.loanTypeApi}): super(key: key, child: child);
 
-  static LocationBlocProvider of(BuildContext context) {
+  static LoanTypeBlocProvider of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<LoanTypeBlocProvider>();
   }
 
