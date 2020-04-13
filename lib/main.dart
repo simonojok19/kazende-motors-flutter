@@ -4,6 +4,7 @@ import 'package:kazendemotors/blocs/authentication_bloc.dart';
 import 'package:kazendemotors/classes/authentication.dart';
 import 'package:kazendemotors/pages/home_page.dart';
 import 'package:kazendemotors/pages/login_page.dart';
+import 'package:kazendemotors/pages/main_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.indigo,
           canvasColor: Colors.lightBlue.shade200,
           bottomAppBarColor: Colors.orange.shade900),
-      home: homePage,
+      home: MainPage(),
     );
   }
 }

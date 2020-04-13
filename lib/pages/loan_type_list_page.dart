@@ -48,7 +48,7 @@ class _LoanTypeListPageState extends State<LoanTypeListPage> {
           } else {
             return Center(
               child: Text('Add Loan Types'),
-            )
+            );
           }
         },
       ),
@@ -70,6 +70,40 @@ class _LoanTypeListPageState extends State<LoanTypeListPage> {
         child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  Widget _buildListViewSeparated(AsyncSnapshot snapshot) {
+    return ListView.separated(
+      itemCount: snapshot.data.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Dismissible(
+          key: Key(snapshot.data[index].documentID),
+          background: Container(
+            color: Colors.red,
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.only(left: 16.0),
+            child: Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+          ),
+          secondaryBackground: Container(
+            color: Colors.red,
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.only(right: 16.0),
+            child: Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+          ),
+          child: ListTile(
+            title: Text(snapshot.data[index].name),
+          ),
+
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) => Divider(),
     );
   }
 }
