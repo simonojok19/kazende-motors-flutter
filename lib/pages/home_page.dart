@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kazendemotors/blocs/bodaboda_list/bodaboda_list_bloc.dart';
 import 'package:kazendemotors/blocs/bodaboda_list/bodaboda_list_bloc_provider.dart';
-import 'package:kazendemotors/blocs/type/loan_type_bloc_provider.dart';
 import 'package:kazendemotors/classes/authentication.dart';
 import 'package:kazendemotors/pages/bodaboda_list_page.dart';
 import 'package:kazendemotors/services/bodaboda/bodaboda_service.dart';
-import 'package:kazendemotors/services/loan_type/loan_type_service.dart';
 
 import 'loan_type_list_page.dart';
 

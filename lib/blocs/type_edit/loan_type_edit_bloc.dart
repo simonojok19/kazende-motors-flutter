@@ -4,7 +4,7 @@ import 'package:kazendemotors/classes/authentication_api.dart';
 import 'package:kazendemotors/models/type/loan_type_model.dart';
 import 'package:kazendemotors/services/loan_type/loan_type_api.dart';
 
-class LoanTypeBloc {
+class LoanTypeEditBloc {
   final LoanTypeApi loanTypeApi;
   final AuthenticationApi authenticationApi;
   final bool add;
@@ -34,7 +34,7 @@ class LoanTypeBloc {
   Sink<String> get descriptionChanged => _descriptionStreamController.sink;
   Stream<String> get description => _descriptionStreamController.stream;
 
-  LoanTypeBloc({ this.add, this.loanType, this.authenticationApi, this.loanTypeApi}) {
+  LoanTypeEditBloc({ this.add, this.loanType, this.authenticationApi, this.loanTypeApi}) {
     authenticationApi.currentUserUid().then((userID) {
       loanType.userID = userID;
       _startListener().then((started) {
