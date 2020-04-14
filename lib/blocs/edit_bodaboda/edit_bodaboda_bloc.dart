@@ -28,6 +28,10 @@ class EditBodaBodaBloc {
   Sink<String> get dateOfBirthChanged => _dateOfBirthController.sink;
   Stream<String> get dateOfBirth => _dateOfBirthController.stream;
 
+  StreamController<String> _phoneNumberController = StreamController<String>.broadcast();
+  Sink<String> get phoneNumberChanged => _phoneNumberController.sink;
+  Stream<String> get phoneNumber => _phoneNumberController.stream;
+
   StreamController<String> _permitNumberController = StreamController<String>.broadcast();
   Sink<String> get permitNumberChanged => _permitNumberController.sink;
   Stream<String> get permitNumber => _permitNumberController.stream;
@@ -44,6 +48,10 @@ class EditBodaBodaBloc {
   StreamController<String> _motorcycleIDController = StreamController<String>.broadcast();
   Sink<String> get motorcycleIDChanged => _motorcycleIDController.sink;
   Stream<String> get motorcycleID => _motorcycleIDController.stream;
+
+  StreamController<String> _nationalIDController = StreamController<String>.broadcast();
+  Sink<String> get nationalIDChanged => _nationalIDController.sink;
+  Stream<String> get nationalID => _nationalIDController.stream;
 
   EditBodaBodaBloc({this.register, this.bodaBoda, this.bodaBodaAPI, this.authenticationApi}) {
     authenticationApi.currentUserUid().then((userID) {
@@ -63,6 +71,8 @@ class EditBodaBodaBloc {
     _stageIDController.close();
     _locationIDController.close();
     _motorcycleIDController.close();
+    _phoneNumberController.close();
+    _nationalIDController.close();
   }
 
   Future<bool> _startEditListenter() async {
@@ -104,6 +114,15 @@ class EditBodaBodaBloc {
     _motorcycleIDController.stream.listen((motorcycleID) {
       bodaBoda.motorcycleID = motorcycleID;
       print(motorcycleID);
+    });
+
+    _phoneNumberController.stream.listen((phoneNumber) {
+      bodaBoda.phoneNumber = phoneNumber;
+      print(phoneNumber);
+    });
+
+    _nationalIDController.stream.listen((nationalID) {
+      bodaBoda.nationalID = nationalID;
     });
 
     return true;

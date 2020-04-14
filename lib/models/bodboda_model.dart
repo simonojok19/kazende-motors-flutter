@@ -5,12 +5,14 @@ class BodaBoda {
   String middleName;
   String dateOfBirth;
   String permitNumber;
+  String phoneNumber;
   String created;
   String updated;
   String userId;
   String stageID;
   String locationID;
   String motorcycleID;
+  String nationalID;
 
   BodaBoda(
       {this.documentID,
@@ -24,7 +26,9 @@ class BodaBoda {
       this.userId,
       this.stageID,
       this.locationID,
-      this.motorcycleID});
+      this.motorcycleID,
+      this.phoneNumber,
+      this.nationalID});
 
   factory BodaBoda.createBodaBodaFromDocument(dynamic doc) => BodaBoda(
       documentID: doc.documentID,
@@ -38,7 +42,11 @@ class BodaBoda {
       userId: doc['userID'],
       stageID: doc['stageID'],
       locationID: doc['locationID'],
-      motorcycleID: doc['motorcycleID']);
+      motorcycleID: doc['motorcycleID'],
+      phoneNumber: doc['phoneNumber'],
+      nationalID: doc['nationalID']
+  );
+
 
   static createDocumentFromBodaBoda(BodaBoda bodaBoda) {
     return {
@@ -52,7 +60,9 @@ class BodaBoda {
       'userID': bodaBoda.userId,
       'stageID': bodaBoda.stageID,
       'locationID': bodaBoda.locationID,
-      'motorcycleID': bodaBoda.motorcycleID
+      'motorcycleID': bodaBoda.motorcycleID,
+      'phoneNumber': bodaBoda.phoneNumber,
+      'nationalID': bodaBoda.nationalID
     };
   }
 
@@ -70,7 +80,8 @@ class BodaBoda {
         'userID': $userId,
         'stageID': $stageID,
         'locationID': $locationID,
-        'motorcycleID': $motorcycleID
+        'motorcycleID': $motorcycleID,
+        'phoneNumber': $phoneNumber
       }
     ''';
   }
