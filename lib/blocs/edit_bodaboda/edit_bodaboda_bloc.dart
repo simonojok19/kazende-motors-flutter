@@ -5,7 +5,7 @@ import 'package:kazendemotors/models/bodboda_model.dart';
 import 'package:kazendemotors/services/bodaboda/bodaboda_api.dart';
 
 
-class BodaBodaBloc {
+class EditBodaBodaBloc {
   final BodaBodaAPI bodaBodaAPI;
   final AuthenticationApi authenticationApi;
   final bool register;
@@ -45,7 +45,7 @@ class BodaBodaBloc {
   Sink<String> get motorcycleIDChanged => _motorcycleIDController.sink;
   Stream<String> get motorcycleID => _motorcycleIDController.stream;
 
-  BodaBodaBloc({this.register, this.bodaBoda, this.bodaBodaAPI, this.authenticationApi}) {
+  EditBodaBodaBloc({this.register, this.bodaBoda, this.bodaBodaAPI, this.authenticationApi}) {
     authenticationApi.currentUserUid().then((userID) {
       bodaBoda.userId = userID;
       _startEditListenter().then((finished) => _getJournal(register, bodaBoda));

@@ -4,7 +4,15 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:kazendemotors/blocs/association/bodaboda_association_bloc.dart';
 import 'package:kazendemotors/blocs/association/bodaboda_association_bloc_provider.dart';
+import 'package:kazendemotors/blocs/edit_bodaboda/edit_bodaboda_bloc.dart';
+import 'package:kazendemotors/blocs/edit_bodaboda/edit_bodaboda_bloc_provider.dart';
+import 'package:kazendemotors/blocs/type_edit/loan_type_edit_bloc_provider.dart';
+import 'package:kazendemotors/classes/authentication.dart';
+import 'package:kazendemotors/classes/authentication_api.dart';
+import 'package:kazendemotors/models/bodboda_model.dart';
 import 'package:kazendemotors/pages/bodaboda_assocation_page.dart';
+import 'package:kazendemotors/pages/edit_bodaboda_page.dart';
+import 'package:kazendemotors/services/bodaboda/bodaboda_service.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -16,16 +24,33 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: Row(
-          children: <Widget>[
-            Icon(
-              Icons.save
-            ),
-            Icon(
-              Icons.location_on
-            ),
-          ],
-        ),
+        title: Text('Kazende Motors'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  fullscreenDialog: true,
+                  builder: (BuildContext context) => EditBodaBodaBlocProvider(
+                    child: EditBodaBodaPage(),
+                    bodaBodaBloc: EditBodaBodaBloc(
+                      authenticationApi: AuthenticationService(),
+                      bodaBoda: BodaBoda(),
+                      bodaBodaAPI: BodaBodaService(),
+                      register: true
+                    ),
+                  )
+                )
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () { },
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -207,7 +232,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                 )
               ),
-            )
+            );
           },
         ),
       ],

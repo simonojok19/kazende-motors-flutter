@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kazendemotors/blocs/edit_bodaboda/bodaboda_bloc.dart';
-import 'package:kazendemotors/blocs/edit_bodaboda/bodaboda_bloc_provider.dart';
+import 'package:kazendemotors/blocs/edit_bodaboda/edit_bodaboda_bloc.dart';
+import 'package:kazendemotors/blocs/edit_bodaboda/edit_bodaboda_bloc_provider.dart';
 import 'package:kazendemotors/dialog/location_dailogs.dart';
 import 'package:kazendemotors/models/location/location_model.dart';
 
@@ -10,13 +10,13 @@ class EditBodaBodaPage extends StatefulWidget {
 }
 
 class _EditBodaBodaPageState extends State<EditBodaBodaPage> {
-  BodaBodaBloc _bodaBodaBloc;
+  EditBodaBodaBloc _bodaBodaBloc;
   TextEditingController _firstNameController;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _bodaBodaBloc = BodaBodaBlocProvider.of(context).bodaBodaBloc;
+    _bodaBodaBloc = EditBodaBodaBlocProvider.of(context).bodaBodaBloc;
   }
 
   @override

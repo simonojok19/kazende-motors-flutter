@@ -3,8 +3,8 @@ import 'package:kazendemotors/blocs/authentcation_bloc_provider.dart';
 import 'package:kazendemotors/blocs/authentication_bloc.dart';
 import 'package:kazendemotors/blocs/bodaboda_list/bodaboda_list_bloc.dart';
 import 'package:kazendemotors/blocs/bodaboda_list/bodaboda_list_bloc_provider.dart';
-import 'package:kazendemotors/blocs/edit_bodaboda/bodaboda_bloc.dart';
-import 'package:kazendemotors/blocs/edit_bodaboda/bodaboda_bloc_provider.dart';
+import 'package:kazendemotors/blocs/edit_bodaboda/edit_bodaboda_bloc.dart';
+import 'package:kazendemotors/blocs/edit_bodaboda/edit_bodaboda_bloc_provider.dart';
 import 'package:kazendemotors/classes/authentication.dart';
 import 'package:kazendemotors/models/bodboda_model.dart';
 import 'package:kazendemotors/pages/edit_bodaboda_page.dart';
@@ -61,8 +61,8 @@ class _BodaBodaListPageState extends State<BodaBodaListPage> {
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(
             fullscreenDialog: true,
-            builder: (BuildContext context) => BodaBodaBlocProvider(
-              bodaBodaBloc: BodaBodaBloc(
+            builder: (BuildContext context) => EditBodaBodaBlocProvider(
+              bodaBodaBloc: EditBodaBodaBloc(
                 authenticationApi: AuthenticationService(),
                 bodaBoda: BodaBoda(),
                 bodaBodaAPI: BodaBodaService(),
