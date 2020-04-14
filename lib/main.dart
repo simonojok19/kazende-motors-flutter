@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
           primarySwatch: Colors.indigo,
           canvasColor: Colors.lightBlue.shade200,
-          bottomAppBarColor: Colors.orange.shade900),
+          bottomAppBarColor: Colors.indigo),
       home: MainPage(),
     );
   }

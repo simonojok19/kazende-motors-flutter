@@ -13,7 +13,16 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        flexibleSpace: Row(
+          children: <Widget>[
+            Icon(
+              Icons.save
+            ),
+            Icon(
+              Icons.location_on
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -85,87 +94,105 @@ class _MainPageState extends State<MainPage> {
             children: <Widget>[
               Icon(
                 Icons.account_balance_wallet,
-                size: 40.0,
+                size: 25.0,
               ),
               Text(
                 'Loans',
-                style: TextStyle(fontSize: 15.0, color: Colors.grey),
+                style: TextStyle(fontSize: 10.0, color: Colors.grey),
               ),
             ],
           ),
           onTap: () {},
         ),
         SizedBox(
-          width: 10.0,
+          width: 15.0,
         ),
         InkWell(
           child: Column(
             children: <Widget>[
               Icon(
                 Icons.motorcycle,
-                size: 40.0,
+                size: 25.0,
               ),
               Text(
                 'Motor',
-                style: TextStyle(fontSize: 15.0, color: Colors.grey),
+                style: TextStyle(fontSize: 10.0, color: Colors.grey),
               ),
             ],
           ),
           onTap: () {},
         ),
         SizedBox(
-          width: 10.0,
+          width: 15.0,
         ),
         InkWell(
           child: Column(
             children: <Widget>[
               Icon(
                 Icons.departure_board,
-                size: 40.0,
+                size: 25.0,
               ),
               Text(
                 'Stage',
-                style: TextStyle(fontSize: 15.0, color: Colors.grey),
+                style: TextStyle(fontSize: 10.0, color: Colors.grey),
               ),
             ],
           ),
           onTap: () {},
         ),
         SizedBox(
-          width: 10.0,
+          width: 15.0,
         ),
         InkWell(
           child: Column(
             children: <Widget>[
               Icon(
                 Icons.location_on,
-                size: 40.0,
+                size: 25.0,
               ),
               Text(
                 'Address',
-                style: TextStyle(fontSize: 15.0, color: Colors.grey),
+                style: TextStyle(fontSize: 10.0, color: Colors.grey),
               ),
             ],
           ),
           onTap: () {},
         ),
         SizedBox(
-          width: 10.0,
+          width: 15.0,
         ),
         InkWell(
           child: Column(
             children: <Widget>[
               Icon(
                 Icons.monetization_on,
-                size: 40.0,
+                size: 25.0,
               ),
               Text(
                 'Payment',
-                style: TextStyle(fontSize: 15.0, color: Colors.grey),
+                style: TextStyle(fontSize: 10.0, color: Colors.grey),
               ),
             ],
           ),
           onTap: () {},
+        ),
+        SizedBox(
+          width: 15.0,
+        ),
+        InkWell(
+          child: Column(
+            children: <Widget>[
+              Icon(
+                Icons.people,
+                size: 25.0,
+              ),
+              Text(
+                'Association',
+                style: TextStyle(fontSize: 10.0, color: Colors.grey),
+              )
+            ],
+          ),
+          onTap: () { },
         ),
       ],
     );
