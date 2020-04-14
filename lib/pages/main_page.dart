@@ -24,33 +24,56 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kazende Motors'),
+        leading: Icon(Icons.person),
+        title: RaisedButton(
+          child: Row(
+            children: <Widget>[Icon(Icons.search), Text('Search')],
+          ),
+          onPressed: () {},
+        ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.edit),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  fullscreenDialog: true,
-                  builder: (BuildContext context) => EditBodaBodaBlocProvider(
-                    child: EditBodaBodaPage(),
-                    bodaBodaBloc: EditBodaBodaBloc(
-                      authenticationApi: AuthenticationService(),
-                      bodaBoda: BodaBoda(),
-                      bodaBodaAPI: BodaBodaService(),
-                      register: true
-                    ),
-                  )
-                )
-              );
-            },
-          ),
-          IconButton(
             icon: Icon(Icons.exit_to_app),
-            onPressed: () { },
+            onPressed: () {},
           )
         ],
+        bottom: PreferredSize(
+          child: Container(
+            color: Colors.indigo,
+            padding: EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Icon(
+                  Icons.sort,
+                  color: Colors.white,
+                  size: 25.0,
+                ),
+                SizedBox(
+                  width: 20.0,
+                ),
+                _buildMotorListIconButton(),
+                SizedBox(
+                  width: 20.0,
+                ),
+                _buildPaymentLisIconButton(),
+                SizedBox(
+                  width: 20.0,
+                ),
+                _buildPrintIconButton(),
+                SizedBox(
+                  width: 20.0,
+                ),
+                _buildListLoanApplicationIconButton(),
+                SizedBox(
+                  width: 20.0,
+                ),
+                _buildEditIconButton()
+              ],
+            ),
+          ),
+          preferredSize: Size.fromHeight(50.0),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -70,23 +93,31 @@ class _MainPageState extends State<MainPage> {
       child: Padding(
         padding: EdgeInsets.all(10.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 CircleAvatar(
                   backgroundImage: AssetImage('assets/images/image_simon.jpg'),
                   radius: 35.0,
                 ),
-                SizedBox(width: 40.0,),
+                // SizedBox(
+                //   width: 140.0,
+                // ),
                 _buildSideColumn(),
               ],
             ),
+            Text(
+              '200,000',
+              style: TextStyle(
+                fontSize: 25.0
+              ),
+            ),
             Divider(),
             _buildRowOfIconButtons(),
-            Divider()
           ],
         ),
       ),
@@ -106,9 +137,7 @@ class _MainPageState extends State<MainPage> {
         Text('Koro Abili'),
         Text(
           '10-October-2020',
-          style: TextStyle(
-            color: Colors.grey
-          ),
+          style: TextStyle(color: Colors.grey),
         )
       ],
     );
@@ -116,6 +145,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget _buildRowOfIconButtons() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         InkWell(
           child: Column(
@@ -224,18 +254,139 @@ class _MainPageState extends State<MainPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                fullscreenDialog: true,
-                builder: (BuildContext context) => BodaBodaAssociationBlocProvider(
-                  child: BodabodaAssociationPage(),
-                  bodaBodaAssociationBloc: BodaBodaAssociationBloc(
-                    // TODO: Params are to be update
-                  ),
-                )
-              ),
+                  fullscreenDialog: true,
+                  builder: (BuildContext context) =>
+                      BodaBodaAssociationBlocProvider(
+                        child: BodabodaAssociationPage(),
+                        bodaBodaAssociationBloc: BodaBodaAssociationBloc(
+                            // TODO: Params are to be update
+                            ),
+                      )),
             );
           },
         ),
       ],
+    );
+  }
+
+  Widget _buildEditIconButton() {
+    return InkWell(
+      child: Icon(
+        Icons.edit,
+        color: Colors.white,
+        size: 25.0,
+      ),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                fullscreenDialog: true,
+                builder: (BuildContext context) => EditBodaBodaBlocProvider(
+                      child: EditBodaBodaPage(),
+                      bodaBodaBloc: EditBodaBodaBloc(
+                          authenticationApi: AuthenticationService(),
+                          bodaBoda: BodaBoda(),
+                          bodaBodaAPI: BodaBodaService(),
+                          register: true),
+                    )));
+      },
+    );
+  }
+
+  Widget _buildListLoanApplicationIconButton() {
+    return InkWell(
+      child: Icon(
+        Icons.account_balance,
+        color: Colors.white,
+        size: 25.0,
+      ),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                fullscreenDialog: true,
+                builder: (BuildContext context) => EditBodaBodaBlocProvider(
+                      child: EditBodaBodaPage(),
+                      bodaBodaBloc: EditBodaBodaBloc(
+                          authenticationApi: AuthenticationService(),
+                          bodaBoda: BodaBoda(),
+                          bodaBodaAPI: BodaBodaService(),
+                          register: true),
+                    )));
+      },
+    );
+  }
+
+  Widget _buildPrintIconButton() {
+    return InkWell(
+      child: Icon(
+        Icons.print,
+        color: Colors.white,
+        size: 25.0,
+      ),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                fullscreenDialog: true,
+                builder: (BuildContext context) => EditBodaBodaBlocProvider(
+                      child: EditBodaBodaPage(),
+                      bodaBodaBloc: EditBodaBodaBloc(
+                          authenticationApi: AuthenticationService(),
+                          bodaBoda: BodaBoda(),
+                          bodaBodaAPI: BodaBodaService(),
+                          register: true),
+                    )));
+      },
+    );
+  }
+
+
+  Widget _buildPaymentLisIconButton() {
+    return InkWell(
+      child: Icon(
+        Icons.card_membership,
+        color: Colors.white,
+        size: 25.0,
+      ),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                fullscreenDialog: true,
+                builder: (BuildContext context) => EditBodaBodaBlocProvider(
+                      child: EditBodaBodaPage(),
+                      bodaBodaBloc: EditBodaBodaBloc(
+                          authenticationApi: AuthenticationService(),
+                          bodaBoda: BodaBoda(),
+                          bodaBodaAPI: BodaBodaService(),
+                          register: true),
+                    )));
+      },
+    );
+  }
+
+  Widget _buildMotorListIconButton() {
+    return InkWell(
+      child: Icon(
+        Icons.assignment,
+        color: Colors.white,
+        size: 25.0,
+      ),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                fullscreenDialog: true,
+                builder: (BuildContext context) => EditBodaBodaBlocProvider(
+                      child: EditBodaBodaPage(),
+                      bodaBodaBloc: EditBodaBodaBloc(
+                          authenticationApi: AuthenticationService(),
+                          bodaBoda: BodaBoda(),
+                          bodaBodaAPI: BodaBodaService(),
+                          register: true),
+                    )));
+      },
     );
   }
 }
