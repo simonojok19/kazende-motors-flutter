@@ -130,7 +130,6 @@ class EditBodaBodaBloc {
 
   void _getJournal(bool register, BodaBoda bodaboda) {
     if (register) {
-      bodaBoda = BodaBoda();
       bodaBoda.firstName = '';
       bodaBoda.lastName = '';
     } else {
