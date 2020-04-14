@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:kazendemotors/blocs/association/bodaboda_association_bloc.dart';
+import 'package:kazendemotors/blocs/association/bodaboda_association_bloc_provider.dart';
+import 'package:kazendemotors/pages/bodaboda_assocation_page.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -192,7 +195,20 @@ class _MainPageState extends State<MainPage> {
               )
             ],
           ),
-          onTap: () { },
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                fullscreenDialog: true,
+                builder: (BuildContext context) => BodaBodaAssociationBlocProvider(
+                  child: BodabodaAssociationPage(),
+                  bodaBodaAssociationBloc: BodaBodaAssociationBloc(
+                    // TODO: Params are to be update
+                  ),
+                )
+              ),
+            )
+          },
         ),
       ],
     );
