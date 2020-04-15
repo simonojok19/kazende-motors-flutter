@@ -1,0 +1,3 @@
+class BodaBodaMotorCyclePageBloc {
+  const BodaBodaMotorCyclePageBloc();
+}
