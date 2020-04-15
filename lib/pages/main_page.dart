@@ -15,6 +15,7 @@ import 'package:kazendemotors/models/bodboda_model.dart';
 import 'package:kazendemotors/pages/bodaboda_assocation_page.dart';
 import 'package:kazendemotors/pages/edit_bodaboda_page.dart';
 import 'package:kazendemotors/services/bodaboda/bodaboda_service.dart';
+import 'package:kazendemotors/widget/bodaboda_card_widget.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -95,7 +96,7 @@ class _MainPageState extends State<MainPage> {
                 child: CircularProgressIndicator(),
               );
             } else if (snapshot.hasData) {
-              return _buildListViewSeparated(snapshot);
+              return BodaBodaCardWidget(snapshot: snapshot,);
             } else {
               return Center(
                 child: Text('Add Some BodaBoda'),
