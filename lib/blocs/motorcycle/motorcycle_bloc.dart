@@ -1,0 +1,3 @@
+class MotorCycleBloc {
+  const MotorCycleBloc();
+}
