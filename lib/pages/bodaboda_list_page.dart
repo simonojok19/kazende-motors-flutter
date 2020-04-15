@@ -76,43 +76,6 @@ class _BodaBodaListPageState extends State<BodaBodaListPage> {
     );
   }
 
-  Widget _buildBodaBodaCard(AsyncSnapshot snapshop) {
-    return Card(
-      margin: EdgeInsets.all(4.0),
-      child: InkWell(
-        child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  CircleAvatar(
-                    backgroundImage:
-                        AssetImage('assets/images/image_simon.jpg'),
-                    radius: 50.0,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Simon Peter Ojok',
-                        style: TextStyle(fontSize: 24.0),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        onTap: () {},
-      ),
-    );
-  }
-
   Widget buildListWithCards(AsyncSnapshot snapshot) {
     return ListView.separated(
       itemCount: snapshot.data.length,

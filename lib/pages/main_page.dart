@@ -6,6 +6,8 @@ import 'package:kazendemotors/blocs/association/bodaboda_association_bloc.dart';
 import 'package:kazendemotors/blocs/association/bodaboda_association_bloc_provider.dart';
 import 'package:kazendemotors/blocs/edit_bodaboda/edit_bodaboda_bloc.dart';
 import 'package:kazendemotors/blocs/edit_bodaboda/edit_bodaboda_bloc_provider.dart';
+import 'package:kazendemotors/blocs/main_page/main_page_bloc.dart';
+import 'package:kazendemotors/blocs/main_page/main_page_bloc_provider.dart';
 import 'package:kazendemotors/blocs/type_edit/loan_type_edit_bloc_provider.dart';
 import 'package:kazendemotors/classes/authentication.dart';
 import 'package:kazendemotors/classes/authentication_api.dart';
@@ -20,6 +22,15 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  MainPageBloc _mainPageBloc;
+
+
+  @override
+  void dispose() {
+    _mainPageBloc.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,20 +86,28 @@ class _MainPageState extends State<MainPage> {
           preferredSize: Size.fromHeight(50.0),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            _buildSingleClientTiles(),
-            _buildSingleClientTiles(),
-            _buildSingleClientTiles(),
-            _buildSingleClientTiles()
-          ],
+      body: SafeArea(
+        child: StreamBuilder(
+          stream: _mainPageBloc.bodaBoda,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasData) {
+              return _buildListViewSeparated(snapshot);
+            } else {
+              return Center(
+                child: Text('Add Some BodaBoda'),
+              );
+            }
+          },
         ),
       ),
     );
   }
 
-  Widget _buildSingleClientTiles() {
+  Widget _buildSingleClientTiles(AsyncSnapshot snapshot) {
     return Card(
       child: Padding(
         padding: EdgeInsets.all(10.0),
@@ -107,7 +126,7 @@ class _MainPageState extends State<MainPage> {
                 // SizedBox(
                 //   width: 140.0,
                 // ),
-                _buildSideColumn(),
+                _buildSideColumn(snapshot),
               ],
             ),
             Text(
@@ -124,12 +143,26 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Widget _buildSideColumn() {
+  Widget _buildListViewSeparated(AsyncSnapshot snapshot) {
+    var data = snapshot.data;
+    return ListView.separated(
+      itemCount: snapshot.data.length,
+      itemBuilder: (BuildContext context, int index) => Card(
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Column(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSideColumn(AsyncSnapshot snapshot) {
+    String firstName = snapshot.data['firstName'];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         Text(
-          'Simon Peter Ojok',
+          firstName,
           style: TextStyle(
             fontSize: 20.0,
           ),
@@ -388,5 +421,11 @@ class _MainPageState extends State<MainPage> {
                     )));
       },
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _mainPageBloc = MainPageBlocProvider.of(context).mainPageBloc;
   }
 }
