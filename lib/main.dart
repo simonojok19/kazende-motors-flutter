@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:kazendemotors/blocs/authentcation_bloc_provider.dart';
 import 'package:kazendemotors/blocs/authentication_bloc.dart';
+import 'package:kazendemotors/blocs/main_page/main_page_bloc.dart';
+import 'package:kazendemotors/blocs/main_page/main_page_bloc_provider.dart';
 import 'package:kazendemotors/classes/authentication.dart';
 import 'package:kazendemotors/pages/home_page.dart';
 import 'package:kazendemotors/pages/login_page.dart';
 import 'package:kazendemotors/pages/main_page.dart';
+import 'package:kazendemotors/services/bodaboda/bodaboda_service.dart';
 
 void main() => runApp(MyApp());
 
@@ -48,7 +51,12 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.indigo,
           canvasColor: Colors.lightBlue.shade200,
           bottomAppBarColor: Colors.indigo),
-      home: MainPage(),
+      home: MainPageBlocProvider(
+        child: MainPage(),
+        mainPageBloc: MainPageBloc(
+          bodaBodaAPI: BodaBodaService()
+        ),
+      ),
     );
   }
 }
