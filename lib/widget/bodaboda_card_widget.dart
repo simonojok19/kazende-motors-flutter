@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:kazendemotors/blocs/motorcycle/bodaboda_motorcycle_bloc_provider.dart';
+import 'package:kazendemotors/blocs/motorcycle/bodaboda_motorcycle_page_bloc.dart';
+import 'package:kazendemotors/pages/bodaboda_motorcycle_page.dart';
 
 class BodaBodaCardWidget extends StatefulWidget {
   final AsyncSnapshot snapshot;
@@ -86,7 +89,18 @@ class _BodaBodaCardWidgetState extends State<BodaBodaCardWidget> {
                         ),
                       ],
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          fullscreenDialog: true,
+                          builder: (BuildContext context) => BodaBodaMotorCyclePageBlocProvider(
+                            child: BodaBodaMotorCyclePage(bodabodaID: snapshot.data[index].documentID,),
+                            bodabodaMotorCyclePageBloc: BodaBodaMotorCyclePageBloc(),
+                          ),
+                        ),
+                      )
+                    },
                   ),
                   SizedBox(
                     width: 15.0,
