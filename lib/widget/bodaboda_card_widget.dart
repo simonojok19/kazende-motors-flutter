@@ -96,7 +96,7 @@ class _BodaBodaCardWidgetState extends State<BodaBodaCardWidget> {
                           fullscreenDialog: true,
                           builder: (BuildContext context) => MotorCycleBlocProvider(
                             child: BodaBodaMotorCyclePage(bodabodaID: snapshot.data[index].documentID,),
-                            bodabodaMotorCyclePageBloc: MotorCycleBloc(),
+                            motorCycleBloc: MotorCycleBloc(),
                           ),
                         ),
                       );
