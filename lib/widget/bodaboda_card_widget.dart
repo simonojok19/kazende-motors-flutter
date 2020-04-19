@@ -83,7 +83,7 @@ class _BodaBodaCardWidgetState extends State<BodaBodaCardWidget> {
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(
                         builder: (BuildContext context) => LoanListBlocProvider(
-                          child: LoanListPage(),
+                          child: LoanListPage(bodabodaDocumentID: snapshot.data[index].documentID),
                           bodabodaDocumentID: snapshot.data[index].documentID,
                           loanListBloc: LoanListBloc(
                             bodaBodaDocumentID: snapshot.data[index].documentID,

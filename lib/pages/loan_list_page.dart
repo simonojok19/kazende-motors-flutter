@@ -9,7 +9,13 @@ import 'package:kazendemotors/pages/loan_application_page.dart';
 import 'package:kazendemotors/services/loan/loan_service.dart';
 import 'package:kazendemotors/widget/list_view_tile_widget.dart';
 
+/// *******************************************************************
+/// This is the loan list page, user comes here after clicking loan icon
+/// from the bodaboda card widget passing in the bodaboda document id
+
 class LoanListPage extends StatefulWidget {
+  String bodabodaDocumentID;
+  LoanListPage({ Key key, this.bodabodaDocumentID }): super(key: key);
   @override
   _LoanListPageState createState() => _LoanListPageState();
 }
@@ -57,7 +63,7 @@ class _LoanListPageState extends State<LoanListPage> {
               child: LoanApplicationPage(),
               loanApplicationBloc: LoanApplicationBloc(
                 loanApi: LoanService(),
-                bodaBodaDocumentID: 'bodaboda id',
+                bodaBodaDocumentID: widget.bodabodaDocumentID,
                 authenticationApi: AuthenticationService(),
                 apply: true,
                 loan: Loan()
