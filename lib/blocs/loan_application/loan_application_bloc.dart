@@ -9,6 +9,7 @@ class LoanApplicationBloc {
   final Loan loan;
   final AuthenticationApi authenticationApi;
   final bool apply;
+  final String bodaBodaDocumentID;
 
 
   StreamController<String> _amountStreamController = StreamController<String>.broadcast();
@@ -36,9 +37,10 @@ class LoanApplicationBloc {
   }
 
 
-  LoanApplicationBloc ({ this.loanApi, this.loan, this.authenticationApi, this.apply }) {
+  LoanApplicationBloc ({ this.loanApi, this.loan, this.authenticationApi, this.apply, this.bodaBodaDocumentID }) {
     authenticationApi.currentUserUid().then((currentUserID) {
       loan.userDocumentID = currentUserID;
+      loan.bodabodaDocumentID = bodaBodaDocumentID;
       _startListeners().then((success) {
         _getApplication(apply, loan);
       });
