@@ -1,7 +1,7 @@
 class Loan {
   String documentID;
   String amount;
-  String peroid;
+  String period;
   String frequency;
   String interestRate;
   String bodabodaDocumentID;
@@ -13,7 +13,7 @@ class Loan {
   Loan({
       this.documentID,
       this.amount,
-      this.peroid,
+      this.period,
       this.frequency,
       this.interestRate,
       this.bodabodaDocumentID,
@@ -27,7 +27,7 @@ class Loan {
     return Loan(
       documentID: document['documentID'],
       amount: document['amount'],
-      peroid: document['period'],
+      period: document['period'],
       frequency: document['frequency'],
       interestRate: document['interestRate'],
       bodabodaDocumentID: document['bodabodaDocumentID'],
@@ -37,4 +37,24 @@ class Loan {
       loanTypeID: document['loanTypeID']
     );
   }
+
+  static createDocumentFromLoan(Loan loan) {
+    return {
+      'amount': loan.amount,
+      'period': loan.period,
+      'frequency': loan.frequency,
+      'interestRate': loan.interestRate,
+      'bodabodaDocumentID': loan.bodabodaDocumentID,
+      'created': loan.created,
+      'updated': loan.updated,
+      'userDocumentID': loan.userDocumentID,
+      'loanTypeID': loan.loanTypeID
+    };
+  }
+
+  @override
+  String toString() {
+    return 'Loan{documentID: $documentID, amount: $amount, period: $period, frequency: $frequency, interestRate: $interestRate, bodabodaDocumentID: $bodabodaDocumentID, created: $created, updated: $updated, userDocumentID: $userDocumentID, loanTypeID: $loanTypeID}';
+  }
+
 }
