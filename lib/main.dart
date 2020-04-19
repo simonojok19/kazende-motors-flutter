@@ -48,9 +48,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Kazende Motors',
       theme: ThemeData(
-          primarySwatch: Colors.indigo,
-          canvasColor: Colors.lightBlue.shade200,
-          bottomAppBarColor: Colors.indigo),
+          primarySwatch: Colors.blueGrey[900],
+          canvasColor: Colors.blueGrey[700],
+      ),
       home: MainPageBlocProvider(
         child: MainPage(),
         mainPageBloc: MainPageBloc(
