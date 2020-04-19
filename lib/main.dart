@@ -32,7 +32,6 @@ class _MyAppState extends State<MyApp> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Container(
-              color: Colors.orangeAccent,
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData) {
@@ -48,9 +47,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Kazende Motors',
       theme: ThemeData(
-          primarySwatch: Colors.blueGrey[900],
-          canvasColor: Colors.blueGrey[700],
-      ),
+          primarySwatch: Colors.indigo,
+          canvasColor: Colors.lightBlue.shade700,
+          bottomAppBarColor: Colors.indigo),
       home: MainPageBlocProvider(
         child: MainPage(),
         mainPageBloc: MainPageBloc(

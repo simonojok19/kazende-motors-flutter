@@ -8,6 +8,8 @@ class LoanApplicationPage extends StatefulWidget {
 class _LoanApplicationPageState extends State<LoanApplicationPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: Text('Apply For Loan'),),
+    );
   }
 }
