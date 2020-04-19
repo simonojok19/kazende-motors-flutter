@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:kazendemotors/blocs/loan_list/loan_list.bloc_provider.dart';
+import 'package:kazendemotors/blocs/loan_list/loan_list_bloc.dart';
 import 'package:kazendemotors/blocs/motorcycle/motorcycle_bloc_provider.dart';
 import 'package:kazendemotors/blocs/motorcycle/motorcycle_bloc.dart';
 import 'package:kazendemotors/pages/bodaboda_motorcycle_page.dart';
+import 'package:kazendemotors/pages/loan_list_page.dart';
+import 'package:kazendemotors/services/loan/loan_service.dart';
 
 class BodaBodaCardWidget extends StatefulWidget {
   final AsyncSnapshot snapshot;
@@ -71,7 +75,23 @@ class _BodaBodaCardWidgetState extends State<BodaBodaCardWidget> {
                         ),
                       ],
                     ),
-                    onTap: () {},
+                    /************************************************************************
+                     * This is the code that launches the loan list page, it needs the
+                     * bodaboda document it
+                     *
+                     */
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (BuildContext context) => LoanListBlocProvider(
+                          child: LoanListPage(),
+                          bodabodaDocumentID: snapshot.data[index].documentID,
+                          loanListBloc: LoanListBloc(
+                            bodaBodaDocumentID: snapshot.data[index].documentID,
+                            loanApi: LoanService()
+                          ),
+                        )
+                      ));
+                    },
                   ),
                   SizedBox(
                     width: 15.0,
