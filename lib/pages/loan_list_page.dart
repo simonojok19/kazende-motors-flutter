@@ -3,6 +3,9 @@ import 'package:kazendemotors/blocs/loan_application/loan_application_bloc.dart'
 import 'package:kazendemotors/blocs/loan_application/loan_application_bloc_provider.dart';
 import 'package:kazendemotors/blocs/loan_list/loan_list.bloc_provider.dart';
 import 'package:kazendemotors/blocs/loan_list/loan_list_bloc.dart';
+import 'package:kazendemotors/classes/authentication.dart';
+import 'package:kazendemotors/models/loan/loan_model.dart';
+import 'package:kazendemotors/pages/loan_application_page.dart';
 import 'package:kazendemotors/services/loan/loan_service.dart';
 import 'package:kazendemotors/widget/list_view_tile_widget.dart';
 
@@ -51,7 +54,14 @@ class _LoanListPageState extends State<LoanListPage> {
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(
             builder: (BuildContext context) => LoanApplicationBlocProvider(
-              child: ,
+              child: LoanApplicationPage(),
+              loanApplicationBloc: LoanApplicationBloc(
+                loanApi: LoanService(),
+                bodaBodaDocumentID: 'bodaboda id',
+                authenticationApi: AuthenticationService(),
+                apply: true,
+                loan: Loan()
+              ),
             )
           ));
         },
