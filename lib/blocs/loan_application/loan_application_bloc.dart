@@ -86,5 +86,6 @@ class LoanApplicationBloc {
 
   void applyForLoan() {
     loanApi.applyForLoan(loan);
+    print(loan.toString());
   }
 }
