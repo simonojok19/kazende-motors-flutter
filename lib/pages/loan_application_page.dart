@@ -32,6 +32,7 @@ class _LoanApplicationPageState extends State<LoanApplicationPage> {
       appBar: AppBar(title: Text('Apply For Loan'),),
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
                 StreamBuilder(

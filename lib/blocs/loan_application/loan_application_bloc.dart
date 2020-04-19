@@ -38,10 +38,14 @@ class LoanApplicationBloc {
 
 
   LoanApplicationBloc ({ this.loanApi, this.loan, this.authenticationApi, this.apply, this.bodaBodaDocumentID }) {
+    print('Constructor');
     authenticationApi.currentUserUid().then((currentUserID) {
       loan.userDocumentID = currentUserID;
+      print('Constructor: $currentUserID');
       loan.bodabodaDocumentID = bodaBodaDocumentID;
+      print('Constructor: $bodaBodaDocumentID');
       _startListeners().then((success) {
+        print('Constructor: $success');
         _getApplication(apply, loan);
       });
     }).catchError((error) {
@@ -52,24 +56,28 @@ class LoanApplicationBloc {
   Future<bool> _startListeners() async{
     _amountStreamController.stream.listen((amount) {
       loan.amount = amount;
+      print(amount);
     }).onError((error) {
       print('Error: $error');
     });
 
     _periodStreamController.stream.listen((period) {
       loan.period = period;
+      print(period);
     }).onError((error) {
       print('Error: $error');
     });
 
     _frequencyStreamController.stream.listen((frequency) {
       loan.frequency = frequency;
+      print(frequency);
     }).onError((error) {
       print('Error: $error');
     });
 
     _interestRateController.stream.listen((interest) {
       loan.interestRate = interest;
+      print(interest);
     }).onError((error) {
       print('Error: $error');
     });

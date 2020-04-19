@@ -9,6 +9,9 @@ class Loan {
   String updated;
   String userDocumentID;
   String loanTypeID;
+  String paymentPeriod;
+  String item;
+  String quantity;
 
   Loan({
       this.documentID,
@@ -20,7 +23,10 @@ class Loan {
       this.created,
       this.updated,
       this.userDocumentID,
-      this.loanTypeID
+      this.loanTypeID,
+      this.paymentPeriod,
+      this.item,
+      this.quantity,
   });
 
   static Loan createLoanFromDocument(dynamic document) {
@@ -34,7 +40,10 @@ class Loan {
       created: document['created'],
       updated: document['updated'],
       userDocumentID: document['userDocumentID'],
-      loanTypeID: document['loanTypeID']
+      loanTypeID: document['loanTypeID'],
+      paymentPeriod: document['paymentPeriod'],
+      item: document['item'],
+      quantity: document['quantity']
     );
   }
 
@@ -48,13 +57,16 @@ class Loan {
       'created': loan.created,
       'updated': loan.updated,
       'userDocumentID': loan.userDocumentID,
-      'loanTypeID': loan.loanTypeID
+      'loanTypeID': loan.loanTypeID,
+      'paymentPeriod': loan.paymentPeriod,
+      'item': loan.item,
+      'quantity': loan.quantity,
     };
   }
 
   @override
   String toString() {
-    return 'Loan{documentID: $documentID, amount: $amount, period: $period, frequency: $frequency, interestRate: $interestRate, bodabodaDocumentID: $bodabodaDocumentID, created: $created, updated: $updated, userDocumentID: $userDocumentID, loanTypeID: $loanTypeID}';
+    return 'Loan{documentID: $documentID, amount: $amount, period: $period, frequency: $frequency, interestRate: $interestRate, bodabodaDocumentID: $bodabodaDocumentID, created: $created, updated: $updated, userDocumentID: $userDocumentID, loanTypeID: $loanTypeID, paymentPeriod: $paymentPeriod, item: $item, quantity: $quantity}';
   }
 
 }

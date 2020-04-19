@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData) {
-            return _buildMaterialApp(homePage: HomePage());
+            return _buildMaterialApp(homePage: MainPage());
           } else return _buildMaterialApp(homePage: LoginPage());
         },
       ),
@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
           canvasColor: Colors.lightBlue.shade700,
           bottomAppBarColor: Colors.indigo),
       home: MainPageBlocProvider(
-        child: MainPage(),
+        child: homePage,
         mainPageBloc: MainPageBloc(
           bodaBodaAPI: BodaBodaService()
         ),
